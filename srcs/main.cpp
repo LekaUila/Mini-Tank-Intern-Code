@@ -1,9 +1,10 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 int main()
 {
     // create the window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Mini Tank Interface", sf::Style::Fullscreen);
 
     window.setFramerateLimit(60);
 
@@ -19,12 +20,17 @@ int main()
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
+            if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::Escape)
+                    window.close();
+            }
         }
 
         float delta = clock.restart().asSeconds();
         float fps = 1.0f / delta;
         std::string title(std::to_string(fps));
-        window.setTitle(title);
+        // window.setTitle(title);
 
         // clear the window with black color
         window.clear(sf::Color::Black);
