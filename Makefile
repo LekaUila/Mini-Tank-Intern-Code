@@ -17,10 +17,11 @@ LIBFSMLFLAG			:=	-L SFML_linux/lib -lsfml-graphics -lsfml-window -lsfml-system
 LIBFSMLFLAGWINDOWS	:=	-L SFML_windows/lib -lsfml-graphics -lsfml-window -lsfml-system
 
 #=====================================NAME=====================================#
-NAME	:=	sfml_base
+NAME	:=	MiniTankInterface
 
 #==================================DIRECTORIES=================================#
 BUILD				:= build
+
 
 EXEC_DIR_LINUX		:=	linux_executable/
 EXEC_LINUX			:=	$(EXEC_DIR_LINUX)$(NAME)
@@ -29,7 +30,8 @@ EXEC_DIR_WINDOWS	:=	windows_executable/
 EXEC_WINDOWS		:=	$(EXEC_DIR_WINDOWS)$(NAME).exe
 
 #====================================TARGETS===================================#
-SRCS	:=	srcs/main.cpp
+SRCS	:=	srcs/main.cpp \
+			srcs/Tank.cpp
 
 OBJS 	:=	${SRCS:srcs/%.cpp=$(BUILD)/%.o}
 DEPS	:=	$(SRCS:srcs/%.cpp=$(BUILD)/%.d)
