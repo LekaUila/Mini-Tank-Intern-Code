@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:51 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 17:11:33 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:53:48 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,12 +310,41 @@ void	Interface::drawCaterpillarStatus(Tank & tank, sf::RenderWindow & window)
 	
 }
 
-void	Interface::draw(Tank & tank, sf::RenderWindow & window)
+void	Interface::drawKillDeathCounter(std::map<unsigned int, unsigned int> & deathCounter, sf::RenderWindow & window)
+{
+	unsigned int counter = numberOfDeath(deathCounter);
+	sf::Text			textHP;
+	sf::RectangleShape	barHP;
+
+
+	barHP.setPosition(this->x / 6,  this->y / 6 * 0.25);
+	barHP.setSize(sf::Vector2f(this->x / 6 * 4, this->y / 6 * 0.50));
+	barHP.setFillColor(sf::Color(0, 0, 0));
+	barHP.setOutlineThickness(this->x / 384);
+	barHP.setOutlineColor(sf::Color(100,100,100));
+	window.draw(barHP);
+
+
+	textHP.setFillColor(sf::Color(INTERFACE_TANK_MAIN_COLOR));
+	textHP.setFont(this->interfaceFont);
+	textHP.setScale(this->x / 1920, this->y / 1080);
+	textHP.setCharacterSize(80);
+	textHP.setString("Death : " + NumberToString(counter));
+	textHP.setPosition(this->x / 6,  this->y / 6 * 0.25);
+	window.draw(textHP);
+	textHP.setString("Kill : 0");
+	textHP.setPosition(this->x / 6 * 3,  this->y / 6 * 0.25);
+	window.draw(textHP);
+}
+
+
+void	Interface::draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCounter, sf::RenderWindow & window)
 {	
 	window.draw(this->backgroundSprite);
 	this->drawRadar(window);
 	this->drawTankHP(tank, window);
 	this->drawCaterpillarStatus(tank, window);
 	this->drawReloading(tank, window);
+	this->drawKillDeathCounter(deathCounter, window);
 
 }

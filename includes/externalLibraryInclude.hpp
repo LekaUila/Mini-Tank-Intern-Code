@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:29:25 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 13:45:42 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/21 19:27:13 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # include <string>
 # include <sstream>
 # include <map>
+# include <vector>
 
 #endif

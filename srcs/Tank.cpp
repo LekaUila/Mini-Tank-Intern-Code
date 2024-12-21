@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:40:49 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 17:06:00 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:11:46 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,27 @@ Tank::~Tank()
 	/*getter*/
 
 
-unsigned int		Tank::getArmorFront()
+float		Tank::getArmorFront()
 {
 	return this->armorFront;
 }
 
-unsigned int		Tank::getArmorLeft()
+float		Tank::getArmorLeft()
 {
 	return this->armorLeft;
 }
 
-unsigned int		Tank::getArmorRight()
+float		Tank::getArmorRight()
 {
 	return this->armorRight;
 }
 
-unsigned int		Tank::getArmorBack()
+float		Tank::getArmorBack()
 {
 	return this->armorBack;
 }
 
-unsigned int		Tank::getHP()
+float		Tank::getHP()
 {
 	return this->hp;
 }

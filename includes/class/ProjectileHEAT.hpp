@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functionDeclaration.hpp                            :+:      :+:    :+:   */
+/*   ProjectileHEAT.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 13:24:00 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 17:44:20 by lflandri         ###   ########.fr       */
+/*   Created: 2024/12/21 18:47:35 by lflandri          #+#    #+#             */
+/*   Updated: 2024/12/21 19:45:18 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNCTION8DECLARATION
-# define FUNCTIONDECLARATION
-# include "externalLibraryInclude.hpp"
+#ifndef PROJECTILEHEAT
+# define PROJECTILEHEAT
 
-unsigned int numberOfDeath(std::map<unsigned int, unsigned int> & deathCounter);
+# include "Projectile.hpp"
+
+class ProjectileHEAT : public Projectile
+{
+private:
+	float	damageHP;
+	float	damageArmor;
+	float	penetration;
+public:
+	ProjectileHEAT();
+	~ProjectileHEAT();
+};
 
 
 
-/*template*/
 
-template <typename T>
-	std::string NumberToString ( T Number )
-	{
-		std::ostringstream ss;
-		ss << Number;
-		return ss.str();
-	}
+
 
 
 #endif

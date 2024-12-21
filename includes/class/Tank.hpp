@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:37 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/20 18:57:49 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:11:27 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ class Tank
 {
 private:
 
-	unsigned int	armorFront;
-	unsigned int	armorLeft;
-	unsigned int	armorRight;
-	unsigned int	armorBack;
-	unsigned int	hp;
+	float	armorFront;
+	float	armorLeft;
+	float	armorRight;
+	float	armorBack;
+	float	hp;
 	bool			caterpillarLeftStatus;
 	sf::Clock		caterpillarLeftClock;
 	bool			caterpillarRightStatus;
@@ -39,11 +39,11 @@ public:
 
 	/*getter*/
 
-	unsigned int		getArmorFront();
-	unsigned int		getArmorLeft();
-	unsigned int		getArmorRight();
-	unsigned int		getArmorBack();
-	unsigned int		getHP();
+	float		getArmorFront();
+	float		getArmorLeft();
+	float		getArmorRight();
+	float		getArmorBack();
+	float		getHP();
 	bool				getCaterpillarLeftStatus();
 	const sf::Clock	&	getCaterpillarLeftClock();
 	bool				getCaterpillarRightStatus();

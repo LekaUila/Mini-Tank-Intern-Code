@@ -6,12 +6,14 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:42:46 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 17:06:32 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/21 19:31:28 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE
 # define DEFINE
+
+# define SELF_ID 0
 
 /*Font path*/
 # define FONT_PATH_ARMALITE_RIFLE "../font/armalite-rifle/armalite.tff"
@@ -40,6 +42,30 @@
 # define INTERFACE_RELOADING_TIMER_PRECISION 10
 # define INTERFACE_CATERPILLAR_TIMER_PRECISION 10
 
+/*Projectil*/
+# define STAT_PROJECTIL_AP_ID 0
+# define STAT_PROJECTIL_AP_PENETRATION 0.01
+# define STAT_PROJECTIL_AP_ARMOR_DAMAGE 15
+# define STAT_PROJECTIL_AP_LIFE_DAMAGE 10
+# define STAT_PROJECTIL_AP_NUMBER_AT_START -1
+
+# define STAT_PROJECTIL_APCR_ID 1
+# define STAT_PROJECTIL_APCR_PENETRATION 0.20
+# define STAT_PROJECTIL_APCR_ARMOR_DAMAGE 20
+# define STAT_PROJECTIL_APCR_LIFE_DAMAGE 10
+# define STAT_PROJECTIL_APCR_NUMBER_AT_START 0
+
+# define STAT_PROJECTIL_HE_ID 2
+# define STAT_PROJECTIL_HE_PENETRATION 0
+# define STAT_PROJECTIL_HE_ARMOR_DAMAGE 5
+# define STAT_PROJECTIL_HE_LIFE_DAMAGE 25
+# define STAT_PROJECTIL_HE_NUMBER_AT_START 0
+
+# define STAT_PROJECTIL_HEAT_ID 3
+# define STAT_PROJECTIL_HEAT_PENETRATION 0.20
+# define STAT_PROJECTIL_HEAT_ARMOR_DAMAGE 20
+# define STAT_PROJECTIL_HEAT_LIFE_DAMAGE 25
+# define STAT_PROJECTIL_HEAT_NUMBER_AT_START 0
 
 
 

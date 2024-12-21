@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functionDeclaration.hpp                            :+:      :+:    :+:   */
+/*   Projectile.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 13:24:00 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 17:44:20 by lflandri         ###   ########.fr       */
+/*   Created: 2024/12/21 18:08:19 by lflandri          #+#    #+#             */
+/*   Updated: 2024/12/21 19:22:47 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNCTION8DECLARATION
-# define FUNCTIONDECLARATION
-# include "externalLibraryInclude.hpp"
+#ifndef PROJECTILE
+# define PROJECTILE
 
-unsigned int numberOfDeath(std::map<unsigned int, unsigned int> & deathCounter);
+#include "../header_tank.hpp"
+
+class Projectile
+{
+private:
+	float	damageHP;
+	float	damageArmor;
+	float	penetration;
+	int		id;
+public:
+	Projectile();
+	Projectile(float dHP, float dArmor, float p, int id);
+	virtual ~Projectile() = 0;
+	float calculDamageHP(float	armorP);
+	float calculDamageArmor(float	armorP);
+	int	getId();
+};
 
 
 
-/*template*/
 
-template <typename T>
-	std::string NumberToString ( T Number )
-	{
-		std::ostringstream ss;
-		ss << Number;
-		return ss.str();
-	}
+
 
 
 #endif

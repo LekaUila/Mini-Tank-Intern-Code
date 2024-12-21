@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:37:04 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 17:04:36 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:51:52 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,18 @@ int main()
                             sf::Style::Fullscreen, settings);
     Tank tank = Tank();
     Interface interface = Interface( window.getSize().x,  window.getSize().y);
-
+    std::map<unsigned int, unsigned int>deathCounter;
     window.setFramerateLimit(60);
 
     sf::Clock clock;
+
+
+    //test adding
+
+    deathCounter[5] = 1;
+    deathCounter[8] = 3;
+
+
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -75,7 +83,7 @@ int main()
         window.clear(sf::Color::Black);
 
         // draw everything here...
-        interface.draw(tank, window);
+        interface.draw(tank, deathCounter, window);
         // window.draw(...);
 
         // end the current frame

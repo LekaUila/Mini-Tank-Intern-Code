@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functionDeclaration.hpp                            :+:      :+:    :+:   */
+/*   ProjectileHEAT.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 13:24:00 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 17:44:20 by lflandri         ###   ########.fr       */
+/*   Created: 2024/12/21 18:35:23 by lflandri          #+#    #+#             */
+/*   Updated: 2024/12/21 19:03:06 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNCTION8DECLARATION
-# define FUNCTIONDECLARATION
-# include "externalLibraryInclude.hpp"
+# include "../includes/class/ProjectileHEAT.hpp"
 
-unsigned int numberOfDeath(std::map<unsigned int, unsigned int> & deathCounter);
-
-
-
-/*template*/
-
-template <typename T>
-	std::string NumberToString ( T Number )
-	{
-		std::ostringstream ss;
-		ss << Number;
-		return ss.str();
-	}
+ProjectileHEAT::ProjectileHEAT(/* args */)
+: Projectile::Projectile(STAT_PROJECTIL_HEAT_LIFE_DAMAGE,
+						STAT_PROJECTIL_HEAT_ARMOR_DAMAGE,
+						STAT_PROJECTIL_HEAT_PENETRATION,
+						STAT_PROJECTIL_HEAT_ID)
+{
+}
 
 
-#endif
+ProjectileHEAT::~ProjectileHEAT()
+{
+}
