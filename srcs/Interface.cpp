@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:51 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 13:59:37 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:11:33 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ Interface::Interface(size_t x, size_t y)
 	this->tanTopViewSprite.setTexture(this->tanTopViewTexture);
 	this->tanTopViewSprite.setScale((double(x) / this->tanTopViewTexture.getSize().x) / 10,
 									(double(y) / this->tanTopViewTexture.getSize().y) / 2.5);
-	this->tanTopViewSprite.setPosition(	this->x / 6 * 4.5 - this->tanTopViewSprite.getGlobalBounds().width / 2, 
+	this->tanTopViewSprite.setPosition(	this->x / 6 * 3.75 - this->tanTopViewSprite.getGlobalBounds().width / 2, 
 										 this->y / 6 * 2);
 										 
 	std::cout << "loading : " << INTERFACE_FONT << std::endl;
@@ -84,7 +84,7 @@ void	Interface::drawRadar(sf::RenderWindow & window)
 	sf::CircleShape		radarBack(this->y / 3, 100);
 
 	radarBack.setFillColor(sf::Color(0, 0, 0));
-	radarBack.setPosition(this->x / 8, this->y / 6);
+	radarBack.setPosition(this->x / 8 * 0.25, this->y / 6);
 	radarBack.setOutlineThickness(this->x / 384);
 	radarBack.setOutlineColor(sf::Color(INTERFACE_RADAR_MAIN_COLOR));
 	window.draw(radarBack);
@@ -94,7 +94,7 @@ void	Interface::drawRadar(sf::RenderWindow & window)
 		sf::Color col = sf::Color(INTERFACE_RADAR_LINE_COLOR,
 						255 - (i * 255 / INTERFACE_RADAR_LINE_NUMBER));
 		lineList[i] = sf::RectangleShape((sf::Vector2f(1, this->y / 3)));
-		lineList[i].setPosition(this->x / 8 + this->y / 3, 
+		lineList[i].setPosition(this->x / 8 * 0.25 + this->y / 3, 
 		this->y / 6 + this->y / 3);
 		lineList[i].setRotation(this->radarAngle + (i * 0.2) + 180);
 		lineList[i].setFillColor(col);
@@ -107,6 +107,7 @@ void	Interface::drawTankHP(Tank & tank, sf::RenderWindow & window)
 
 	sf::RectangleShape	tankHpBack(sf::Vector2f(this->x / 6 * 2, this->y / 3 * 2));
 	sf::Text			textHP;
+	sf::RectangleShape	barHP;
 
 	textHP.setFillColor(sf::Color(INTERFACE_TANK_MAIN_COLOR));
 	textHP.setFont(this->interfaceFont);
@@ -116,7 +117,7 @@ void	Interface::drawTankHP(Tank & tank, sf::RenderWindow & window)
 
 
 	tankHpBack.setFillColor(sf::Color(0, 0, 0));
-	tankHpBack.setPosition(this->x / 6 * 3.5, this->y / 6);
+	tankHpBack.setPosition(this->x / 6 * 2.75, this->y / 6);
 	tankHpBack.setOutlineThickness(this->x / 384);
 	tankHpBack.setOutlineColor(sf::Color(100,100,100));
 	window.draw(tankHpBack);
@@ -125,25 +126,188 @@ void	Interface::drawTankHP(Tank & tank, sf::RenderWindow & window)
 
 	/*armor front*/
 	textHP.setString(NumberToString(tank.getArmorFront()) + " / " + NumberToString(STAT_TANK_ARMOR_FRONT));
-	textHP.setPosition(this->x / 6 * 4.5 - textHP.getGlobalBounds().width / 2,  this->y / 6 * 1.5);
+	textHP.setPosition(this->x / 6 * 3.75 - textHP.getGlobalBounds().width / 2,  this->y / 6 * 1.5);
 	window.draw(textHP);
+
+	barHP.setPosition(textHP.getPosition().x, textHP.getPosition().y + textHP.getGlobalBounds().height + this->y / 180);
+	barHP.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_BACK));
+	barHP.setSize(sf::Vector2f(textHP.getGlobalBounds().width, textHP.getGlobalBounds().height / 2));
+	window.draw(barHP);
+	barHP.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_FRONT));
+	barHP.setSize(sf::Vector2f(tank.getArmorFront() * textHP.getGlobalBounds().width /
+									STAT_TANK_ARMOR_FRONT, textHP.getGlobalBounds().height / 2));
+	window.draw(barHP);
+
 
 	/*armor left*/
 	textHP.setString(NumberToString(tank.getArmorLeft()) + " / " + NumberToString(STAT_TANK_ARMOR_SIDE));
-	textHP.setPosition(this->x / 6 * 3.75,  this->y / 6 * 2.75);
+	textHP.setPosition(this->x / 6 * 3,  this->y / 6 * 2.75);
 	window.draw(textHP);
+
+	barHP.setPosition(textHP.getPosition().x, textHP.getPosition().y + textHP.getGlobalBounds().height + this->y / 180);
+	barHP.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_BACK));
+	barHP.setSize(sf::Vector2f(textHP.getGlobalBounds().width, textHP.getGlobalBounds().height / 2));
+	window.draw(barHP);
+	barHP.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_FRONT));
+	barHP.setSize(sf::Vector2f(tank.getArmorLeft() * textHP.getGlobalBounds().width /
+									STAT_TANK_ARMOR_SIDE, textHP.getGlobalBounds().height / 2));
+	window.draw(barHP);
 
 	/*armor right*/
 	textHP.setString(NumberToString(tank.getArmorRight()) + " / " + NumberToString(STAT_TANK_ARMOR_SIDE));
-	textHP.setPosition(this->x / 6 * 5,  this->y / 6 * 2.75);
+	textHP.setPosition(this->x / 6 * 4.25,  this->y / 6 * 2.75);
 	window.draw(textHP);
+
+	barHP.setPosition(textHP.getPosition().x, textHP.getPosition().y + textHP.getGlobalBounds().height + this->y / 180);
+	barHP.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_BACK));
+	barHP.setSize(sf::Vector2f(textHP.getGlobalBounds().width, textHP.getGlobalBounds().height / 2));
+	window.draw(barHP);
+	barHP.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_FRONT));
+	barHP.setSize(sf::Vector2f(tank.getArmorRight() * textHP.getGlobalBounds().width /
+									STAT_TANK_ARMOR_SIDE, textHP.getGlobalBounds().height / 2));
+	window.draw(barHP);
 
 	/*armor back*/
 	textHP.setString(NumberToString(tank.getArmorBack()) + " / " + NumberToString(STAT_TANK_ARMOR_BACK));
-	textHP.setPosition(this->x / 6 * 4.5 - textHP.getGlobalBounds().width / 2,  this->y / 6 * 4.5);
+	textHP.setPosition(this->x / 6 * 3.75 - textHP.getGlobalBounds().width / 2,  this->y / 6 * 4.5);
 	window.draw(textHP);
 
+	barHP.setPosition(textHP.getPosition().x, textHP.getPosition().y + textHP.getGlobalBounds().height + this->y / 180);
+	barHP.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_BACK));
+	barHP.setSize(sf::Vector2f(textHP.getGlobalBounds().width, textHP.getGlobalBounds().height / 2));
+	window.draw(barHP);
+	barHP.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_FRONT));
+	barHP.setSize(sf::Vector2f(tank.getArmorBack() * textHP.getGlobalBounds().width /
+									STAT_TANK_ARMOR_BACK, textHP.getGlobalBounds().height / 2));
+	window.draw(barHP);
 
+
+	/*PV*/
+
+
+	barHP.setPosition(this->x / 6 * 2.75, this->y / 6);
+	barHP.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_BACK));
+	barHP.setSize(sf::Vector2f(this->x / 6 * 2, this->y / 6 * 0.25));
+	window.draw(barHP);
+	barHP.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_FRONT));
+	barHP.setSize(sf::Vector2f(tank.getHP() * (this->x / 6 * 2) /
+									STAT_TANK_LIFE, this->y / 6 * 0.25));
+
+	window.draw(barHP);
+
+	textHP.setFillColor(sf::Color(0,0,0));
+	textHP.setFont(this->interfaceFont);
+	textHP.setCharacterSize(35);
+	textHP.setString("PV : " + NumberToString(tank.getHP()) + " / " + NumberToString(STAT_TANK_LIFE));
+	textHP.setPosition(this->x / 6 * 3.75 - textHP.getGlobalBounds().width / 2,  this->y / 6 );
+	window.draw(textHP);
+
+}
+
+void	Interface::drawReloading(Tank & tank, sf::RenderWindow & window)
+{
+	sf::Text			textReloading;
+	sf::RectangleShape	reloadingBar;
+
+	reloadingBar.setPosition(this->x / 6,  this->y / 6 * 5.25);
+	reloadingBar.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_BACK));
+	reloadingBar.setSize(sf::Vector2f(this->x / 6 * 4, this->y / 6 * 0.50));
+	reloadingBar.setOutlineThickness(this->x / 384);
+	reloadingBar.setOutlineColor(sf::Color(100,100,100));
+	window.draw(reloadingBar);
+	reloadingBar.setOutlineThickness(0);
+	reloadingBar.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_FRONT));
+	if (tank.getReloadingTimeStatus())
+		reloadingBar.setSize(sf::Vector2f(this->x / 6 * 4, this->y / 6 * 0.50));
+	else
+		reloadingBar.setSize(sf::Vector2f(tank.getReloadingTimeClock().getElapsedTime().asSeconds() * (this->x / 6 * 4) /
+									STAT_TANK_RELOAD_TIME, this->y / 6 * 0.50));
+	window.draw(reloadingBar);
+
+	textReloading.setFont(this->interfaceFont);
+	textReloading.setScale(this->x / 1920, this->y / 1080);
+	textReloading.setFillColor(sf::Color(0,0,0));
+	textReloading.setFont(this->interfaceFont);
+	textReloading.setCharacterSize(85);
+	if (tank.getReloadingTimeStatus())
+		textReloading.setString("Systeme ready to fire");
+	else
+		textReloading.setString(NumberToString(STAT_TANK_RELOAD_TIME - (double(int(tank.getReloadingTimeClock().getElapsedTime().asSeconds() * INTERFACE_RELOADING_TIMER_PRECISION)) / INTERFACE_RELOADING_TIMER_PRECISION)));
+	textReloading.setPosition(this->x / 6 * 3 - textReloading.getGlobalBounds().width / 2,  this->y / 6 * 5.20);
+	window.draw(textReloading);
+}
+
+void	Interface::drawCaterpillarStatus(Tank & tank, sf::RenderWindow & window)
+{
+	sf::Text			CatterpilarName;
+	sf::Text			CatterpilarStatus;
+	sf::Text			CatterpilarTimer;
+
+	CatterpilarName.setScale(this->x / 1920, this->y / 1080);
+	CatterpilarStatus.setScale(this->x / 1920, this->y / 1080);
+	CatterpilarTimer.setScale(this->x / 1920, this->y / 1080);
+	CatterpilarName.setFont(this->interfaceFont);
+	CatterpilarStatus.setFont(this->interfaceFont);
+	CatterpilarTimer.setFont(this->interfaceFont);
+	CatterpilarName.setCharacterSize(25);
+	CatterpilarStatus.setCharacterSize(20);
+	CatterpilarTimer.setCharacterSize(20);
+
+	CatterpilarName.setString("Caterpillar left");
+	if (tank.getCaterpillarLeftStatus())
+	{
+		CatterpilarStatus.setString("Status : OK");
+		CatterpilarTimer.setString("");
+		CatterpilarName.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_FRONT));
+		CatterpilarStatus.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_FRONT));
+		CatterpilarTimer.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_FRONT));
+	}
+	else
+	{
+		CatterpilarStatus.setString("Status : KO");
+		CatterpilarTimer.setString("Ready in : "
+							+ NumberToString(STAT_TANK_CATTERPILAR_REPARATION_TIME -
+							(double(int(tank.getCaterpillarLeftClock().getElapsedTime().asSeconds()
+									* INTERFACE_CATERPILLAR_TIMER_PRECISION)) / INTERFACE_CATERPILLAR_TIMER_PRECISION)));
+		CatterpilarName.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_BACK));
+		CatterpilarStatus.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_BACK));
+		CatterpilarTimer.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_BACK));
+	}
+	CatterpilarName.setPosition(this->x / 6 * 2.80,  this->y / 6 * 3.45);
+	CatterpilarStatus.setPosition(this->x / 6 * 2.80,  this->y / 6 * 3.45 + CatterpilarName.getGlobalBounds().height + 6);
+	CatterpilarTimer.setPosition(this->x / 6 * 2.80,  this->y / 6 * 3.45 + (CatterpilarName.getGlobalBounds().height + 6) * 2);
+	window.draw(CatterpilarName);
+	window.draw(CatterpilarStatus);
+	window.draw(CatterpilarTimer);
+
+	CatterpilarName.setString("Caterpillar right");
+	if (tank.getCaterpillarRightStatus())
+	{
+		CatterpilarStatus.setString("Status : OK");
+		CatterpilarTimer.setString("");
+		CatterpilarName.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_FRONT));
+		CatterpilarStatus.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_FRONT));
+		CatterpilarTimer.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_FRONT));
+	}
+	else
+	{
+		CatterpilarStatus.setString("Status : KO");
+		CatterpilarTimer.setString("Ready in : "
+							+ NumberToString(STAT_TANK_CATTERPILAR_REPARATION_TIME -
+							(double(int(tank.getCaterpillarRightClock().getElapsedTime().asSeconds()
+									* INTERFACE_CATERPILLAR_TIMER_PRECISION)) / INTERFACE_CATERPILLAR_TIMER_PRECISION)));
+		CatterpilarName.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_BACK));
+		CatterpilarStatus.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_BACK));
+		CatterpilarTimer.setFillColor(sf::Color(INTERFACE_TANK_LIFE_BAR_BACK));
+	}
+	CatterpilarName.setPosition(this->x / 6 * 4.15,  this->y / 6 * 3.45);
+	CatterpilarStatus.setPosition(this->x / 6 * 4.15,  this->y / 6 * 3.45 + CatterpilarName.getGlobalBounds().height + 6);
+	CatterpilarTimer.setPosition(this->x / 6 * 4.15,  this->y / 6 * 3.45 + (CatterpilarName.getGlobalBounds().height + 6) * 2);
+	window.draw(CatterpilarName);
+	window.draw(CatterpilarStatus);
+	window.draw(CatterpilarTimer);
+
+	
 }
 
 void	Interface::draw(Tank & tank, sf::RenderWindow & window)
@@ -151,5 +315,7 @@ void	Interface::draw(Tank & tank, sf::RenderWindow & window)
 	window.draw(this->backgroundSprite);
 	this->drawRadar(window);
 	this->drawTankHP(tank, window);
+	this->drawCaterpillarStatus(tank, window);
+	this->drawReloading(tank, window);
 
 }

@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:37:04 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 11:00:09 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:04:36 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,26 @@ int main()
                 window.close();
             if (event.type == sf::Event::KeyPressed)
             {
-                std::cout << window.getSize().x << " " << window.getSize().y << std::endl;
+                // std::cout << window.getSize().x << " " << window.getSize().y << std::endl;
                 if (event.key.code == sf::Keyboard::Escape)
                     window.close();
+                if (event.key.code == sf::Keyboard::Up)
+                    tank.takeDamageOnArmorFront(5);
+                if (event.key.code == sf::Keyboard::Left)
+                    tank.takeDamageOnArmorLeft(5);
+                if (event.key.code == sf::Keyboard::Right)
+                    tank.takeDamageOnArmorRight(5);
+                if (event.key.code == sf::Keyboard::Down)
+                    tank.takeDamageOnArmorBack(5);
+                if (event.key.code == sf::Keyboard::L)
+                    tank.takeDamageOnHP(5);
+                if (event.key.code == sf::Keyboard::F)
+                    tank.shoot();
+                if (event.key.code == sf::Keyboard::K)
+                    tank.destroyCaterpillarLeft();
+                if (event.key.code == sf::Keyboard::M)
+                    tank.destroyCaterpillarRight();
+            
             }
         }
 

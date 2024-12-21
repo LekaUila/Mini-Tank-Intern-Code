@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:40:49 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/20 18:50:39 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:06:00 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,10 +175,10 @@ void	Tank::tick()
 	if (this->reloadingTimeClock.getElapsedTime().asSeconds() >= STAT_TANK_RELOAD_TIME)
 		this->reloadingTimeStatus = true;
 
-	if (this->caterpillarLeftClock.getElapsedTime().asSeconds() >= STAT_TANK_RELOAD_TIME)
+	if (this->caterpillarLeftClock.getElapsedTime().asSeconds() >= STAT_TANK_CATTERPILAR_REPARATION_TIME)
 		this->caterpillarLeftStatus = true;
 
-	if (this->caterpillarRightClock.getElapsedTime().asSeconds() >= STAT_TANK_RELOAD_TIME)
+	if (this->caterpillarRightClock.getElapsedTime().asSeconds() >= STAT_TANK_CATTERPILAR_REPARATION_TIME)
 		this->caterpillarRightStatus = true;
 }
 

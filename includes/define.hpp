@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:42:46 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 13:54:20 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:06:32 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@
 # define INTERFACE_RADAR_LINE_NUMBER 200
 # define INTERFACE_RADAR_LINE_COLOR INTERFACE_RADAR_MAIN_COLOR
 # define INTERFACE_TANK_MAIN_COLOR 0, 255, 0
+# define INTERFACE_TANK_LIFE_BAR_BACK 255, 0, 0
+# define INTERFACE_TANK_LIFE_BAR_FRONT INTERFACE_TANK_MAIN_COLOR
 # define INTERFACE_FONT FONT_PATH_GUNPLAY_RG
-
+# define INTERFACE_RELOADING_TIMER_PRECISION 10
+# define INTERFACE_CATERPILLAR_TIMER_PRECISION 10
 
 
 

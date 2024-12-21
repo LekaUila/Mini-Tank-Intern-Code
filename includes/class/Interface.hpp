@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:36 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 13:01:46 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:54:50 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ private:
 
 	void	drawRadar(sf::RenderWindow & window);
 	void	drawTankHP(Tank & tank, sf::RenderWindow & window);
+	void	drawReloading(Tank & tank, sf::RenderWindow & window);
+	void	drawCaterpillarStatus(Tank & tank, sf::RenderWindow & window);
+
 
 public:
 	Interface(size_t x, size_t y);
