@@ -6,18 +6,23 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:37:04 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/20 18:58:10 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/21 11:00:09 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../includes/header_tank.hpp"
+#include "../includes/class/Tank.hpp"
+#include "../includes/class/Interface.hpp"
 
 int main()
 {
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8;
     // create the window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Mini Tank Interface", sf::Style::Fullscreen);
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "Mini Tank Interface",
+                            sf::Style::Fullscreen, settings);
     Tank tank = Tank();
+    Interface interface = Interface( window.getSize().x,  window.getSize().y);
 
     window.setFramerateLimit(60);
 
@@ -35,6 +40,7 @@ int main()
                 window.close();
             if (event.type == sf::Event::KeyPressed)
             {
+                std::cout << window.getSize().x << " " << window.getSize().y << std::endl;
                 if (event.key.code == sf::Keyboard::Escape)
                     window.close();
             }
@@ -47,9 +53,12 @@ int main()
         // window.setTitle(title);
 
         // clear the window with black color
+        interface.tick();
+        tank.tick();
         window.clear(sf::Color::Black);
 
         // draw everything here...
+        interface.draw(tank, window);
         // window.draw(...);
 
         // end the current frame

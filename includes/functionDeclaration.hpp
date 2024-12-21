@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header_tank.hpp                                    :+:      :+:    :+:   */
+/*   functionDeclaration.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 17:35:39 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 13:46:06 by lflandri         ###   ########.fr       */
+/*   Created: 2024/12/21 13:24:00 by lflandri          #+#    #+#             */
+/*   Updated: 2024/12/21 13:47:00 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_TANK
-# define HEADER_TANK
-
-//internal header
-# include "define.hpp"
-# include "functionDeclaration.hpp"
+#ifndef FUNCTION8DECLARATION
+# define FUNCTIONDECLARATION
 # include "externalLibraryInclude.hpp"
 
-// struct
-typedef struct s_point
-{
-	double	x;
-	double	y;
-} t_point;
+// size_t calculTextWith(sf::Text & text);
 
 
+/*template*/
 
-
-
-
-
+template <typename T>
+	std::string NumberToString ( T Number )
+	{
+		std::ostringstream ss;
+		ss << Number;
+		return ss.str();
+	}
 
 
 #endif

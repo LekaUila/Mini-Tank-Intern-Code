@@ -31,7 +31,9 @@ EXEC_WINDOWS		:=	$(EXEC_DIR_WINDOWS)$(NAME).exe
 
 #====================================TARGETS===================================#
 SRCS	:=	srcs/main.cpp \
-			srcs/Tank.cpp
+			srcs/Tank.cpp \
+			srcs/Interface.cpp \
+			srcs/utils.cpp \
 
 OBJS 	:=	${SRCS:srcs/%.cpp=$(BUILD)/%.o}
 DEPS	:=	$(SRCS:srcs/%.cpp=$(BUILD)/%.d)
