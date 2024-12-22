@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:42:46 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 19:31:28 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/22 10:58:41 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@
 # define INTERFACE_FONT FONT_PATH_GUNPLAY_RG
 # define INTERFACE_RELOADING_TIMER_PRECISION 10
 # define INTERFACE_CATERPILLAR_TIMER_PRECISION 10
+# define INTERFACE_PROJECTILE_SELECTOR_BASIC_COLOR 0, 100, 0
+# define INTERFACE_PROJECTILE_SELECTOR_UNDERLINE_COLOR 0, 255 , 0
+# define INTERFACE_PROJECTILE_SELECTOR_NO_ARMOR_COLOR 50, 50, 50
 
 /*Projectil*/
 # define STAT_PROJECTIL_AP_ID 0

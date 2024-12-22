@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:34:12 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 20:11:04 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/22 11:05:06 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ ProjectileManager::~ProjectileManager()
 
 Projectile *ProjectileManager::getProjectilById(unsigned int id)
 {
-
+	return this->listProjectile[id].second;
 }
 
 void	ProjectileManager::reset()
@@ -53,13 +53,50 @@ Projectile *ProjectileManager::shoot()
 	{
 		this->listProjectile[this->slectionIndice].first--;
 		if (!this->listProjectile[this->slectionIndice].first)
-		{
 			this->slectionIndice = 0;
-		}
+		else if (this->listProjectile[this->slectionIndice].first == -2)
+			this->listProjectile[this->slectionIndice].first = -1;
 	}
+	return toReturn;
 }
 
 void		ProjectileManager::addProjectile(unsigned int id, unsigned int number)
 {
 	this->listProjectile[id].first += number;
+}
+
+unsigned int ProjectileManager::getSelectionIndice()
+{
+	return this->slectionIndice;
+}
+
+int	ProjectileManager::getNumberOfProjectileFor(unsigned int id)
+{
+	return this->listProjectile[id].first;
+}
+
+void	ProjectileManager::goNextProjectile()
+{
+	this->slectionIndice++;
+	if (this->slectionIndice > 3)
+		this->slectionIndice = 0;
+	while (this->listProjectile[this->slectionIndice].first == 0)
+	{
+		this->slectionIndice++;
+		if (this->slectionIndice > 3)
+			this->slectionIndice = 0;
+	}
+	
+}
+void	ProjectileManager::goLastProjectile()
+{
+	this->slectionIndice--;
+	if (this->slectionIndice < 0)
+		this->slectionIndice = 3;
+	while (this->listProjectile[this->slectionIndice].first == 0)
+	{
+		this->slectionIndice--;
+		if (this->slectionIndice < 0)
+			this->slectionIndice = 3;		
+	}
 }

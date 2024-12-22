@@ -39,6 +39,7 @@ SRCS	:=	srcs/main.cpp \
 			srcs/ProjectileAPCR.cpp \
 			srcs/ProjectileHE.cpp \
 			srcs/ProjectileHEAT.cpp \
+			srcs/ProjectileManager.cpp \
 
 OBJS 	:=	${SRCS:srcs/%.cpp=$(BUILD)/%.o}
 DEPS	:=	$(SRCS:srcs/%.cpp=$(BUILD)/%.d)

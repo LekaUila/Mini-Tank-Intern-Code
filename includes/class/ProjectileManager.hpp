@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:07:04 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 19:34:17 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/22 11:01:58 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ public:
 	void	reset();
 	Projectile *shoot();
 	void		addProjectile(unsigned int id, unsigned int number);
-
+	unsigned int getSelectionIndice();
+	int			getNumberOfProjectileFor(unsigned int id);
+	void		goNextProjectile();
+	void		goLastProjectile();
 };
 
 

@@ -6,13 +6,14 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:37:04 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 17:51:52 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/22 11:14:31 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../includes/class/Tank.hpp"
 #include "../includes/class/Interface.hpp"
+#include "../includes/class/ProjectileManager.hpp"
 
 int main()
 {
@@ -23,6 +24,7 @@ int main()
                             sf::Style::Fullscreen, settings);
     Tank tank = Tank();
     Interface interface = Interface( window.getSize().x,  window.getSize().y);
+    ProjectileManager projectileManager = ProjectileManager();
     std::map<unsigned int, unsigned int>deathCounter;
     window.setFramerateLimit(60);
 
@@ -33,6 +35,8 @@ int main()
 
     deathCounter[5] = 1;
     deathCounter[8] = 3;
+    projectileManager.addProjectile(1, 1);
+    projectileManager.addProjectile(3, 3);
 
 
 
@@ -62,11 +66,18 @@ int main()
                 if (event.key.code == sf::Keyboard::L)
                     tank.takeDamageOnHP(5);
                 if (event.key.code == sf::Keyboard::F)
+                {
                     tank.shoot();
+                    projectileManager.shoot();
+                }
                 if (event.key.code == sf::Keyboard::K)
                     tank.destroyCaterpillarLeft();
                 if (event.key.code == sf::Keyboard::M)
                     tank.destroyCaterpillarRight();
+                if (event.key.code == sf::Keyboard::B)
+                    projectileManager.goNextProjectile();
+                if (event.key.code == sf::Keyboard::N)
+                    projectileManager.goLastProjectile();
             
             }
         }
@@ -83,7 +94,7 @@ int main()
         window.clear(sf::Color::Black);
 
         // draw everything here...
-        interface.draw(tank, deathCounter, window);
+        interface.draw(tank, deathCounter, projectileManager, window);
         // window.draw(...);
 
         // end the current frame

@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:51 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 17:53:48 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/22 10:59:22 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,8 +306,6 @@ void	Interface::drawCaterpillarStatus(Tank & tank, sf::RenderWindow & window)
 	window.draw(CatterpilarName);
 	window.draw(CatterpilarStatus);
 	window.draw(CatterpilarTimer);
-
-	
 }
 
 void	Interface::drawKillDeathCounter(std::map<unsigned int, unsigned int> & deathCounter, sf::RenderWindow & window)
@@ -337,8 +335,63 @@ void	Interface::drawKillDeathCounter(std::map<unsigned int, unsigned int> & deat
 	window.draw(textHP);
 }
 
+void	Interface::drawProjectileSelector(ProjectileManager & projectileManager, sf::RenderWindow & window)
+{
+	sf::RectangleShape	projectileSelector(sf::Vector2f(this->x / 6, this->y / 3 * 2));
+	sf::Text			ProjectileName;
+	sf::Text			ProjectileStock;
+	const char			*nameProjectileList[4] = {"AP","APCR","HE","HEAT"};
+	int					ProjectileNumber;
 
-void	Interface::draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCounter, sf::RenderWindow & window)
+	ProjectileName.setFont(this->interfaceFont);
+	ProjectileName.setScale(this->x / 1920, this->y / 1080);
+	ProjectileName.setCharacterSize(35);	
+	ProjectileStock.setFont(this->interfaceFont);
+	ProjectileStock.setScale(this->x / 1920, this->y / 1080);
+	ProjectileStock.setCharacterSize(25);
+
+	projectileSelector.setFillColor(sf::Color(0, 0, 0));
+	projectileSelector.setPosition(this->x / 6 * 4.85, this->y / 6);
+	projectileSelector.setOutlineThickness(this->x / 384);
+	projectileSelector.setOutlineColor(sf::Color(100,100,100));
+	window.draw(projectileSelector);
+	
+	for (size_t i = 0; i < 4; i++)
+	{
+		ProjectileNumber = projectileManager.getNumberOfProjectileFor(i);
+		if (i == projectileManager.getSelectionIndice())
+		{
+			ProjectileName.setFillColor(sf::Color(INTERFACE_PROJECTILE_SELECTOR_UNDERLINE_COLOR));
+			ProjectileStock.setFillColor(sf::Color(INTERFACE_PROJECTILE_SELECTOR_UNDERLINE_COLOR));
+		}
+		else if (ProjectileNumber)
+		{
+			ProjectileName.setFillColor(sf::Color(INTERFACE_PROJECTILE_SELECTOR_BASIC_COLOR));
+			ProjectileStock.setFillColor(sf::Color(INTERFACE_PROJECTILE_SELECTOR_BASIC_COLOR));
+		}
+		else
+		{
+			ProjectileName.setFillColor(sf::Color(INTERFACE_PROJECTILE_SELECTOR_NO_ARMOR_COLOR));
+			ProjectileStock.setFillColor(sf::Color(INTERFACE_PROJECTILE_SELECTOR_NO_ARMOR_COLOR));
+		}
+		ProjectileName.setPosition(this->x / 6 * 4.90, this->y / 6 * (i * 1 + 1));
+		ProjectileStock.setPosition(this->x / 6 * 4.90, this->y / 6 * (i * 1 + 1.25));
+		ProjectileName.setString(nameProjectileList[i]);
+		if (ProjectileNumber == -1)
+			ProjectileStock.setString("Stock : unlimited");
+		else
+			ProjectileStock.setString("Stock : " + NumberToString(ProjectileNumber));
+		window.draw(ProjectileName);
+		window.draw(ProjectileStock);
+		
+
+	}
+	
+}
+
+
+
+void	Interface::draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCounter,ProjectileManager & projectileManager, sf::RenderWindow & window)
 {	
 	window.draw(this->backgroundSprite);
 	this->drawRadar(window);
@@ -346,5 +399,5 @@ void	Interface::draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCo
 	this->drawCaterpillarStatus(tank, window);
 	this->drawReloading(tank, window);
 	this->drawKillDeathCounter(deathCounter, window);
-
+	this->drawProjectileSelector(projectileManager, window);
 }

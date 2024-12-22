@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:36 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 17:43:29 by lflandri         ###   ########.fr       */
+/*   Updated: 2024/12/22 09:38:00 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../header_tank.hpp"
 # include "Tank.hpp"
+# include "ProjectileManager.hpp"
 
 
 class Interface
@@ -41,6 +42,7 @@ private:
 	void	drawReloading(Tank & tank, sf::RenderWindow & window);
 	void	drawCaterpillarStatus(Tank & tank, sf::RenderWindow & window);
 	void	drawKillDeathCounter(std::map<unsigned int, unsigned int> & deathCounter,sf::RenderWindow & window);
+	void	drawProjectileSelector(ProjectileManager & projectileManager, sf::RenderWindow & window);
 
 
 public:
@@ -58,7 +60,8 @@ public:
 
 	void	updatePoint(unsigned int ID, double x, double y);
 	void	tick();
-	void	draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCounter, sf::RenderWindow & window);
+	void	draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCounter,
+					ProjectileManager & projectileManager, sf::RenderWindow & window);
 };
 
 
