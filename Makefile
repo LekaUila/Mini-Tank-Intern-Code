@@ -13,8 +13,8 @@ endif
 #=================================COMPILATION==================================#
 CC					:=	g++
 CPPFLAGS			:=	-MP -MMD -I SFML_linux/include -I includes -g3
-LIBFSMLFLAG			:=	-L SFML_linux/lib -lsfml-graphics -lsfml-window -lsfml-system
-LIBFSMLFLAGWINDOWS	:=	-L SFML_windows/lib -lsfml-graphics -lsfml-window -lsfml-system
+LIBFSMLFLAG			:=	-L SFML_linux/lib -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
+LIBFSMLFLAGWINDOWS	:=	-L SFML_windows/lib -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
 #=====================================NAME=====================================#
 NAME	:=	MiniTankInterface

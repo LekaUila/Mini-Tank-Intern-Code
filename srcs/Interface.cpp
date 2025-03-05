@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:51 by lflandri          #+#    #+#             */
-/*   Updated: 2025/03/05 16:30:33 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:03:57 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,9 @@ void	Interface::drawRadar(sf::RenderWindow & window)
 		lineList[i].setFillColor(col);
 		window.draw(lineList[i]);
 	}
-    // std::cout << "size dic : " << this->otherPosition.size() << std::endl;
 
 	for (auto &&other : this->otherPosition)
 	{
-		// t_point other =  this->otherPosition[i];
-
 		if (sqrt((other.second.x * other.second.x) + (other.second.y * other.second.y ))  > 10 )
 			continue;
 
@@ -128,18 +125,10 @@ void	Interface::drawRadar(sf::RenderWindow & window)
 				360 - int(angle - (int(this->radarAngle + varieangle) % 360)) * 255 / 360
 
 			));
-		if (this->radarAngle > 0.0 && this->radarAngle < 2.1)
-		{
-			std::cout << "point : " << other.second.x << " " << other.second.y << std::endl;
-			std::cout << "test : " <<  angle << std::endl;
-
-		}
-		// std::cout << "angle : " << this->radarAngle << std::endl;
 
 		point.setPosition(this->x / 8 * 0.25 + this->y / 3 - this->y / 100 + (other.second.x * (this->y / 3) / 10),
 							this->y / 6 + this->y / 3 - this->y / 100 + (other.second.y * (this->y / 3) / 10));
 		window.draw(point);
-		// std::cout << "test : " << other.second.x << " " << other.second.y << std::endl;
 	}
 }
 

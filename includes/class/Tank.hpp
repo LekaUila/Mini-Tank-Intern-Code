@@ -6,12 +6,13 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:37 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 18:11:27 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:26:54 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TANK
 # define TANK
+# include <SFML/Audio.hpp>
 
 # include "../header_tank.hpp"
 
@@ -30,6 +31,7 @@ private:
 	sf::Clock		caterpillarRightClock;
 	bool			reloadingTimeStatus;
 	sf::Clock		reloadingTimeClock;
+	// sf::SoundBuffer	shootBufferSound;
 
 
 public:
