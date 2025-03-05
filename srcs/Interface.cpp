@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:51 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/22 10:59:22 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:30:33 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ Interface::Interface(size_t x, size_t y)
 	this->x = x;
 	this->y = y;
 	this->inGame = false;
-	this->otherPosition = std::map<unsigned int, t_point>();
+	this->otherPosition;
 	this->radarAngle = 0;
+	this->position.x = 0;
+	this->position.y = 0;
 
 	std::cout << "loading : " << "../img/interfaceBackground.jpg" << std::endl;
 	this->backgroundTexture = sf::Texture();
@@ -82,6 +84,7 @@ void	Interface::drawRadar(sf::RenderWindow & window)
 {
 	sf::RectangleShape	lineList[INTERFACE_RADAR_LINE_NUMBER];
 	sf::CircleShape		radarBack(this->y / 3, 100);
+	sf::CircleShape		point(this->y / 100, 10);
 
 	radarBack.setFillColor(sf::Color(0, 0, 0));
 	radarBack.setPosition(this->x / 8 * 0.25, this->y / 6);
@@ -99,6 +102,44 @@ void	Interface::drawRadar(sf::RenderWindow & window)
 		lineList[i].setRotation(this->radarAngle + (i * 0.2) + 180);
 		lineList[i].setFillColor(col);
 		window.draw(lineList[i]);
+	}
+    // std::cout << "size dic : " << this->otherPosition.size() << std::endl;
+
+	for (auto &&other : this->otherPosition)
+	{
+		// t_point other =  this->otherPosition[i];
+
+		if (sqrt((other.second.x * other.second.x) + (other.second.y * other.second.y ))  > 10 )
+			continue;
+
+		t_point AB;
+		AB.x = 0;
+		AB.y = -5;
+		t_point AC;
+		AC.x = other.second.x;
+		AC.y = other.second.y;
+		double angle = acos((AB.x * AC.x + AB.y * AC.y) / (sqrt(AB.x * AB.x + AB.y * AB.y) * sqrt(AC.x * AC.x + AC.y * AC.y))) * 57.2958;
+		double varieangle = 210;
+		if (AC.x < 0)
+			angle = 360 - angle;
+		point.setFillColor(
+			sf::Color(
+				INTERFACE_RADAR_LINE_COLOR, 
+				360 - int(angle - (int(this->radarAngle + varieangle) % 360)) * 255 / 360
+
+			));
+		if (this->radarAngle > 0.0 && this->radarAngle < 2.1)
+		{
+			std::cout << "point : " << other.second.x << " " << other.second.y << std::endl;
+			std::cout << "test : " <<  angle << std::endl;
+
+		}
+		// std::cout << "angle : " << this->radarAngle << std::endl;
+
+		point.setPosition(this->x / 8 * 0.25 + this->y / 3 - this->y / 100 + (other.second.x * (this->y / 3) / 10),
+							this->y / 6 + this->y / 3 - this->y / 100 + (other.second.y * (this->y / 3) / 10));
+		window.draw(point);
+		// std::cout << "test : " << other.second.x << " " << other.second.y << std::endl;
 	}
 }
 

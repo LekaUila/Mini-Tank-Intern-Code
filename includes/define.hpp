@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:42:46 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/22 10:58:41 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:21:38 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define STAT_TANK_CATTERPILAR_REPARATION_TIME 90
 
 /*INTERFACE*/
+# define INTERFACE_RADAR_DETECTION_DISTANCE 10
 # define INTERFACE_RADAR_SPEED 2
 # define INTERFACE_RADAR_MAIN_COLOR 0, 255, 0
 # define INTERFACE_RADAR_LINE_NUMBER 200

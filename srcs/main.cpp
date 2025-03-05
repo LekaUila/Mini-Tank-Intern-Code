@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:37:04 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/22 11:14:31 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:31:12 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,17 @@ int main()
     sf::Clock clock;
 
 
-    //test adding
+    //TEST adding
 
     deathCounter[5] = 1;
     deathCounter[8] = 3;
     projectileManager.addProjectile(1, 1);
     projectileManager.addProjectile(3, 3);
+    interface.updatePoint(4, 5, 7);
+    interface.updatePoint(5, -5, 7);
+    interface.updatePoint(3, 9, -2);
+    interface.updatePoint(2, -1, -1);
+    interface.updatePoint(6, 10, 10);
 
 
 

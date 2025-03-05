@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:36 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/22 09:38:00 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:26:17 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class Interface
 private:
 	
 	std::map<unsigned int,t_point>	otherPosition;
+	t_point							position;
 	bool							inGame;
 	double							radarAngle;
 	size_t							x;
