@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:51 by lflandri          #+#    #+#             */
-/*   Updated: 2025/03/05 18:03:57 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/25 20:09:13 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void	Interface::drawTankHP(Tank & tank, sf::RenderWindow & window)
 
 	textHP.setFillColor(sf::Color(INTERFACE_TANK_MAIN_COLOR));
 	textHP.setFont(this->interfaceFont);
-	textHP.setScale(this->x / 1920, this->y / 1080);
+	textHP.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
 	textHP.setCharacterSize(25);
 
 
@@ -255,7 +255,7 @@ void	Interface::drawReloading(Tank & tank, sf::RenderWindow & window)
 	window.draw(reloadingBar);
 
 	textReloading.setFont(this->interfaceFont);
-	textReloading.setScale(this->x / 1920, this->y / 1080);
+	textReloading.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
 	textReloading.setFillColor(sf::Color(0,0,0));
 	textReloading.setFont(this->interfaceFont);
 	textReloading.setCharacterSize(85);
@@ -273,9 +273,9 @@ void	Interface::drawCaterpillarStatus(Tank & tank, sf::RenderWindow & window)
 	sf::Text			CatterpilarStatus;
 	sf::Text			CatterpilarTimer;
 
-	CatterpilarName.setScale(this->x / 1920, this->y / 1080);
-	CatterpilarStatus.setScale(this->x / 1920, this->y / 1080);
-	CatterpilarTimer.setScale(this->x / 1920, this->y / 1080);
+	CatterpilarName.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
+	CatterpilarStatus.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
+	CatterpilarTimer.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
 	CatterpilarName.setFont(this->interfaceFont);
 	CatterpilarStatus.setFont(this->interfaceFont);
 	CatterpilarTimer.setFont(this->interfaceFont);
@@ -355,7 +355,7 @@ void	Interface::drawKillDeathCounter(std::map<unsigned int, unsigned int> & deat
 
 	textHP.setFillColor(sf::Color(INTERFACE_TANK_MAIN_COLOR));
 	textHP.setFont(this->interfaceFont);
-	textHP.setScale(this->x / 1920, this->y / 1080);
+	textHP.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
 	textHP.setCharacterSize(80);
 	textHP.setString("Death : " + NumberToString(counter));
 	textHP.setPosition(this->x / 6,  this->y / 6 * 0.25);
@@ -374,10 +374,10 @@ void	Interface::drawProjectileSelector(ProjectileManager & projectileManager, sf
 	int					ProjectileNumber;
 
 	ProjectileName.setFont(this->interfaceFont);
-	ProjectileName.setScale(this->x / 1920, this->y / 1080);
+	ProjectileName.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
 	ProjectileName.setCharacterSize(35);	
 	ProjectileStock.setFont(this->interfaceFont);
-	ProjectileStock.setScale(this->x / 1920, this->y / 1080);
+	ProjectileStock.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
 	ProjectileStock.setCharacterSize(25);
 
 	projectileSelector.setFillColor(sf::Color(0, 0, 0));

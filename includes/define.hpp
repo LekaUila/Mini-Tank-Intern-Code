@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:42:46 by lflandri          #+#    #+#             */
-/*   Updated: 2025/03/05 14:21:38 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/25 20:09:05 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define DEFINE
 
 # define SELF_ID 0
+
+/*Resolution*/
+# define RESOLUTION_X 1920
+# define RESOLUTION_Y 1080
 
 /*Font path*/
 # define FONT_PATH_ARMALITE_RIFLE "../font/armalite-rifle/armalite.tff"

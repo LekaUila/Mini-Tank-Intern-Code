@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:37:04 by lflandri          #+#    #+#             */
-/*   Updated: 2025/03/05 16:31:12 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/25 20:09:34 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main()
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
     // create the window
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "Mini Tank Interface",
+    sf::RenderWindow window(sf::VideoMode(RESOLUTION_X, RESOLUTION_Y), "Mini Tank Interface",
                             sf::Style::Fullscreen, settings);
     Tank tank = Tank();
     Interface interface = Interface( window.getSize().x,  window.getSize().y);
