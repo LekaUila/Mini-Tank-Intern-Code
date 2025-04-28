@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:51 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/25 20:09:13 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 14:48:40 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ void	Interface::setInGame(bool inGame)
 
 	/*getter*/
 
+bool	Interface::getInGame()
+{
+		return this->inGame;
+}
+
+
 	/*method*/
 
 
@@ -73,9 +79,9 @@ void	Interface::updatePoint(unsigned int ID, double x, double y)
 	this->otherPosition[ID].y = y;
 }
 
-void	Interface::tick()
+void	Interface::tick(float delta)
 {
-	this->radarAngle -= INTERFACE_RADAR_SPEED;
+	this->radarAngle -= INTERFACE_RADAR_SPEED * delta;
 	if (this->radarAngle <= 0)
 		this->radarAngle += 360;
 }
@@ -422,12 +428,15 @@ void	Interface::drawProjectileSelector(ProjectileManager & projectileManager, sf
 
 
 void	Interface::draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCounter,ProjectileManager & projectileManager, sf::RenderWindow & window)
-{	
-	window.draw(this->backgroundSprite);
-	this->drawRadar(window);
-	this->drawTankHP(tank, window);
-	this->drawCaterpillarStatus(tank, window);
-	this->drawReloading(tank, window);
-	this->drawKillDeathCounter(deathCounter, window);
-	this->drawProjectileSelector(projectileManager, window);
+{	if (this->inGame)
+	{
+		window.draw(this->backgroundSprite);
+		this->drawRadar(window);
+		this->drawTankHP(tank, window);
+		this->drawCaterpillarStatus(tank, window);
+		this->drawReloading(tank, window);
+		this->drawKillDeathCounter(deathCounter, window);
+		this->drawProjectileSelector(projectileManager, window);		
+	}
+
 }

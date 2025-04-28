@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:36 by lflandri          #+#    #+#             */
-/*   Updated: 2025/03/05 14:26:17 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 14:43:38 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,14 @@ public:
 
 	/*getter*/
 
+	bool	getInGame();
+
+
 	/*method*/
 
 
 	void	updatePoint(unsigned int ID, double x, double y);
-	void	tick();
+	void	tick(float delta);
 	void	draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCounter,
 					ProjectileManager & projectileManager, sf::RenderWindow & window);
 };

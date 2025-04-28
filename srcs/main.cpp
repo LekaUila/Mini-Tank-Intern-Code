@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:37:04 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/25 20:09:34 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 14:46:57 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../includes/class/Interface.hpp"
 #include "../includes/class/ProjectileManager.hpp"
 
-int main()
+int main(int ac, char **av)
 {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
@@ -33,6 +33,7 @@ int main()
 
     //TEST adding
 
+    interface.setInGame(true);
     deathCounter[5] = 1;
     deathCounter[8] = 3;
     projectileManager.addProjectile(1, 1);
@@ -60,42 +61,46 @@ int main()
                 // std::cout << window.getSize().x << " " << window.getSize().y << std::endl;
                 if (event.key.code == sf::Keyboard::Escape)
                     window.close();
-                if (event.key.code == sf::Keyboard::Up)
-                    tank.takeDamageOnArmorFront(5);
-                if (event.key.code == sf::Keyboard::Left)
-                    tank.takeDamageOnArmorLeft(5);
-                if (event.key.code == sf::Keyboard::Right)
-                    tank.takeDamageOnArmorRight(5);
-                if (event.key.code == sf::Keyboard::Down)
-                    tank.takeDamageOnArmorBack(5);
-                if (event.key.code == sf::Keyboard::L)
-                    tank.takeDamageOnHP(5);
-                if (event.key.code == sf::Keyboard::F)
+                if (interface.getInGame())
                 {
-                    tank.shoot();
-                    projectileManager.shoot();
+                    if (event.key.code == sf::Keyboard::Up)
+                        tank.takeDamageOnArmorFront(5);
+                    if (event.key.code == sf::Keyboard::Left)
+                        tank.takeDamageOnArmorLeft(5);
+                    if (event.key.code == sf::Keyboard::Right)
+                        tank.takeDamageOnArmorRight(5);
+                    if (event.key.code == sf::Keyboard::Down)
+                        tank.takeDamageOnArmorBack(5);
+                    if (event.key.code == sf::Keyboard::L)
+                        tank.takeDamageOnHP(5);
+                    if (event.key.code == sf::Keyboard::F)
+                    {
+                        tank.shoot();
+                        projectileManager.shoot();
+                    }
+                    if (event.key.code == sf::Keyboard::K)
+                        tank.destroyCaterpillarLeft();
+                    if (event.key.code == sf::Keyboard::M)
+                        tank.destroyCaterpillarRight();
+                    if (event.key.code == sf::Keyboard::B)
+                        projectileManager.goNextProjectile();
+                    if (event.key.code == sf::Keyboard::N)
+                        projectileManager.goLastProjectile();
                 }
-                if (event.key.code == sf::Keyboard::K)
-                    tank.destroyCaterpillarLeft();
-                if (event.key.code == sf::Keyboard::M)
-                    tank.destroyCaterpillarRight();
-                if (event.key.code == sf::Keyboard::B)
-                    projectileManager.goNextProjectile();
-                if (event.key.code == sf::Keyboard::N)
-                    projectileManager.goLastProjectile();
-            
             }
         }
 
-        // float delta = clock.restart().asSeconds();
+        float delta = clock.restart().asSeconds();
         // std::cout << clock.getElapsedTime().asSeconds() << std::endl;
-        // float fps = 1.0f / delta;
+        float fps = 1.0f / delta;
+        // std::cout << "fps : " << fps << std::endl;
+        interface.tick(delta);
+        tank.tick();
         // std::string title(std::to_string(fps));
         // window.setTitle(title);
 
         // clear the window with black color
-        interface.tick();
-        tank.tick();
+
         window.clear(sf::Color::Black);
 
         // draw everything here...

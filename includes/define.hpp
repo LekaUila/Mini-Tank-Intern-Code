@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:42:46 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/25 20:09:05 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 14:50:05 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 /*INTERFACE*/
 # define INTERFACE_RADAR_DETECTION_DISTANCE 10
-# define INTERFACE_RADAR_SPEED 2
+# define INTERFACE_RADAR_SPEED 40
 # define INTERFACE_RADAR_MAIN_COLOR 0, 255, 0
 # define INTERFACE_RADAR_LINE_NUMBER 200
 # define INTERFACE_RADAR_LINE_COLOR INTERFACE_RADAR_MAIN_COLOR

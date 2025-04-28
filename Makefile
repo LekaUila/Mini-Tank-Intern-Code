@@ -7,6 +7,8 @@ MAKEFLAGS		:=	--no-print-directory
 CC					:=	g++
 CPPFLAGS			:=	-MP -MMD -I includes -g3
 LIBFSMLFLAG			:=	-lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
+#==================================VARIABLES===================================#
+ID					:= 0
 
 #=====================================NAME=====================================#
 NAME	:=	MiniTankInterface
@@ -97,7 +99,7 @@ re :
 
 run: $(EXEC_LINUX)
 	@echo "$(BLUE)Launch game$(NOC)"
-	@cd $(EXEC_DIR_LINUX) && ./$(NAME)
+	@cd $(EXEC_DIR_LINUX) && ./$(NAME) $(ID)
 	@echo "$(GREEN)Have a nice day :)$(NOC)"
 
 runval: $(EXEC_LINUX)
