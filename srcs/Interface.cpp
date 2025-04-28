@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:51 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/28 15:53:18 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 16:33:11 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,31 @@ bool	Interface::getInGame()
 }
 
 
+
 	/*method*/
+
+void	Interface::draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCounter,ProjectileManager & projectileManager, sf::RenderWindow & window)
+{	if (this->inGame)
+	{
+		window.draw(this->backgroundSprite);
+		this->drawRadar(tank, window);
+		this->drawTankHP(tank, window);
+		this->drawCaterpillarStatus(tank, window);
+		this->drawReloading(tank, window);
+		this->drawKillDeathCounter(deathCounter, window);
+		this->drawProjectileSelector(projectileManager, window);		
+	}
+
+}
+
+
+/*==========================================================================*/
+/*==========================================================================*/
+/*==========================================================================*/
+							//In Game Function//
+/*==========================================================================*/
+/*==========================================================================*/
+/*==========================================================================*/
 
 
 void	Interface::updatePoint(unsigned int ID, double x, double y)
@@ -105,7 +129,7 @@ void	Interface::drawRadar(Tank & tank, sf::RenderWindow & window)
 		lineList[i] = sf::RectangleShape((sf::Vector2f(1, this->y / 3)));
 		lineList[i].setPosition(this->x / 8 * 0.25 + this->y / 3, 
 		this->y / 6 + this->y / 3);
-		lineList[i].setRotation(this->radarAngle + (i * 0.2) + 180);
+		lineList[i].setRotation(this->radarAngle + (i * (float(INTERFACE_RADAR_LINE_SPACE) / float(INTERFACE_RADAR_LINE_NUMBER))) + 180);
 		lineList[i].setFillColor(col);
 		window.draw(lineList[i]);
 	}
@@ -149,7 +173,7 @@ void	Interface::drawTankHP(Tank & tank, sf::RenderWindow & window)
 	textHP.setFillColor(sf::Color(INTERFACE_TANK_MAIN_COLOR));
 	textHP.setFont(this->interfaceFont);
 	textHP.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
-	textHP.setCharacterSize(25);
+	textHP.setCharacterSize(RESOLUTION_X / 76.8);
 
 
 
@@ -234,7 +258,7 @@ void	Interface::drawTankHP(Tank & tank, sf::RenderWindow & window)
 
 	textHP.setFillColor(sf::Color(0,0,0));
 	textHP.setFont(this->interfaceFont);
-	textHP.setCharacterSize(35);
+	textHP.setCharacterSize(RESOLUTION_X / 54.8);
 	textHP.setString("PV : " + NumberToString(tank.getHP()) + " / " + NumberToString(STAT_TANK_LIFE));
 	textHP.setPosition(this->x / 6 * 3.75 - textHP.getGlobalBounds().width / 2,  this->y / 6 );
 	window.draw(textHP);
@@ -265,7 +289,7 @@ void	Interface::drawReloading(Tank & tank, sf::RenderWindow & window)
 	textReloading.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
 	textReloading.setFillColor(sf::Color(0,0,0));
 	textReloading.setFont(this->interfaceFont);
-	textReloading.setCharacterSize(85);
+	textReloading.setCharacterSize(RESOLUTION_X / 22.5);
 	if (tank.getReloadingTimeStatus())
 		textReloading.setString("Systeme ready to fire");
 	else
@@ -286,9 +310,9 @@ void	Interface::drawCaterpillarStatus(Tank & tank, sf::RenderWindow & window)
 	CatterpilarName.setFont(this->interfaceFont);
 	CatterpilarStatus.setFont(this->interfaceFont);
 	CatterpilarTimer.setFont(this->interfaceFont);
-	CatterpilarName.setCharacterSize(25);
-	CatterpilarStatus.setCharacterSize(20);
-	CatterpilarTimer.setCharacterSize(20);
+	CatterpilarName.setCharacterSize(RESOLUTION_X / 76.8);
+	CatterpilarStatus.setCharacterSize(RESOLUTION_X / 96);
+	CatterpilarTimer.setCharacterSize(RESOLUTION_X / 96);
 
 	CatterpilarName.setString("Caterpillar left");
 	if (tank.getCaterpillarLeftStatus())
@@ -363,7 +387,7 @@ void	Interface::drawKillDeathCounter(std::map<unsigned int, unsigned int> & deat
 	textHP.setFillColor(sf::Color(INTERFACE_TANK_MAIN_COLOR));
 	textHP.setFont(this->interfaceFont);
 	textHP.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
-	textHP.setCharacterSize(80);
+	textHP.setCharacterSize(RESOLUTION_X / 24);
 	textHP.setString("Death : " + NumberToString(counter));
 	textHP.setPosition(this->x / 6,  this->y / 6 * 0.25);
 	window.draw(textHP);
@@ -382,10 +406,10 @@ void	Interface::drawProjectileSelector(ProjectileManager & projectileManager, sf
 
 	ProjectileName.setFont(this->interfaceFont);
 	ProjectileName.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
-	ProjectileName.setCharacterSize(35);	
+	ProjectileName.setCharacterSize(RESOLUTION_X / 54.8);	
 	ProjectileStock.setFont(this->interfaceFont);
 	ProjectileStock.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
-	ProjectileStock.setCharacterSize(25);
+	ProjectileStock.setCharacterSize(RESOLUTION_X / 76.8);
 
 	projectileSelector.setFillColor(sf::Color(0, 0, 0));
 	projectileSelector.setPosition(this->x / 6 * 4.85, this->y / 6);
@@ -427,17 +451,10 @@ void	Interface::drawProjectileSelector(ProjectileManager & projectileManager, sf
 }
 
 
-
-void	Interface::draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCounter,ProjectileManager & projectileManager, sf::RenderWindow & window)
-{	if (this->inGame)
-	{
-		window.draw(this->backgroundSprite);
-		this->drawRadar(tank, window);
-		this->drawTankHP(tank, window);
-		this->drawCaterpillarStatus(tank, window);
-		this->drawReloading(tank, window);
-		this->drawKillDeathCounter(deathCounter, window);
-		this->drawProjectileSelector(projectileManager, window);		
-	}
-
-}
+/*==========================================================================*/
+/*==========================================================================*/
+/*==========================================================================*/
+						//Not In Game Function//
+/*==========================================================================*/
+/*==========================================================================*/
+/*==========================================================================*/

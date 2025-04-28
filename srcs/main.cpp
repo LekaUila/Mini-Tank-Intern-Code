@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:37:04 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/28 15:33:56 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 16:13:21 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int main(int ac, char **av)
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
     // create the window
+    // sf::RenderWindow window(sf::VideoMode(RESOLUTION_X, RESOLUTION_Y), "Mini Tank Interface",
+    //                         sf::Style::Fullscreen, settings);
     sf::RenderWindow window(sf::VideoMode(RESOLUTION_X, RESOLUTION_Y), "Mini Tank Interface",
-                            sf::Style::Fullscreen, settings);
+                            sf::Style::Default, settings);
     Tank tank = Tank();
     Interface interface = Interface( window.getSize().x,  window.getSize().y);
     ProjectileManager projectileManager = ProjectileManager();

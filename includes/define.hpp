@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:42:46 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/28 14:50:05 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 16:17:57 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # define SELF_ID 0
 
 /*Resolution*/
-# define RESOLUTION_X 1920
-# define RESOLUTION_Y 1080
+# define RESOLUTION_X 850
+# define RESOLUTION_Y 540
+// # define RESOLUTION_X 1920
+// # define RESOLUTION_Y 1080
 
 /*Font path*/
 # define FONT_PATH_ARMALITE_RIFLE "../font/armalite-rifle/armalite.tff"
@@ -38,7 +40,8 @@
 # define INTERFACE_RADAR_DETECTION_DISTANCE 10
 # define INTERFACE_RADAR_SPEED 40
 # define INTERFACE_RADAR_MAIN_COLOR 0, 255, 0
-# define INTERFACE_RADAR_LINE_NUMBER 200
+# define INTERFACE_RADAR_LINE_NUMBER 400
+# define INTERFACE_RADAR_LINE_SPACE 40
 # define INTERFACE_RADAR_LINE_COLOR INTERFACE_RADAR_MAIN_COLOR
 # define INTERFACE_TANK_MAIN_COLOR 0, 255, 0
 # define INTERFACE_TANK_LIFE_BAR_BACK 255, 0, 0
