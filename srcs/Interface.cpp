@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:51 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/28 14:48:40 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 15:53:18 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	Interface::tick(float delta)
 		this->radarAngle += 360;
 }
 
-void	Interface::drawRadar(sf::RenderWindow & window)
+void	Interface::drawRadar(Tank & tank, sf::RenderWindow & window)
 {
 	sf::RectangleShape	lineList[INTERFACE_RADAR_LINE_NUMBER];
 	sf::CircleShape		radarBack(this->y / 3, 100);
@@ -117,10 +117,11 @@ void	Interface::drawRadar(sf::RenderWindow & window)
 
 		t_point AB;
 		AB.x = 0;
-		AB.y = -5;
+		AB.y = -0.000000001;
 		t_point AC;
 		AC.x = other.second.x;
 		AC.y = other.second.y;
+		AC = rotate(AC, AB, tank.getRotation());
 		double angle = acos((AB.x * AC.x + AB.y * AC.y) / (sqrt(AB.x * AB.x + AB.y * AB.y) * sqrt(AC.x * AC.x + AC.y * AC.y))) * 57.2958;
 		double varieangle = 210;
 		if (AC.x < 0)
@@ -132,8 +133,8 @@ void	Interface::drawRadar(sf::RenderWindow & window)
 
 			));
 
-		point.setPosition(this->x / 8 * 0.25 + this->y / 3 - this->y / 100 + (other.second.x * (this->y / 3) / 10),
-							this->y / 6 + this->y / 3 - this->y / 100 + (other.second.y * (this->y / 3) / 10));
+		point.setPosition(this->x / 8 * 0.25 + this->y / 3 - this->y / 100 + (AC.x * (this->y / 3) / 10),
+							this->y / 6 + this->y / 3 - this->y / 100 + (AC.y * (this->y / 3) / 10));
 		window.draw(point);
 	}
 }
@@ -431,7 +432,7 @@ void	Interface::draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCo
 {	if (this->inGame)
 	{
 		window.draw(this->backgroundSprite);
-		this->drawRadar(window);
+		this->drawRadar(tank, window);
 		this->drawTankHP(tank, window);
 		this->drawCaterpillarStatus(tank, window);
 		this->drawReloading(tank, window);

@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:40:49 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/28 14:44:24 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 15:06:43 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ Tank::Tank(/* args */)
 	this->caterpillarLeftStatus = true;
 	this->caterpillarRightStatus = true;
 	this->reloadingTimeStatus = true;
+	this->rotation = 0;
 	// sf::SoundBuffer	shootBufferSound;
 	// std::cout << "loading : " << "../sound/shoot.wav" << std::endl;
 	// if (this->shootBufferSound.loadFromFile("../sound/shoot.wav"))
@@ -95,7 +96,18 @@ const sf::Clock	&	Tank::getReloadingTimeClock()
 }
 
 
+float	Tank::getRotation()
+{
+	return 	this->rotation;
+}
+
+	
 /*setter*/
+
+void	Tank::setRotation(float r)
+{
+	this->rotation = r;
+}
 
 /*methodr*/
 

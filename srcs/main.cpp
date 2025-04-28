@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:37:04 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/28 14:46:57 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 15:33:56 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,10 @@ int main(int ac, char **av)
                         projectileManager.goNextProjectile();
                     if (event.key.code == sf::Keyboard::N)
                         projectileManager.goLastProjectile();
+                    if (event.key.code == sf::Keyboard::Q)
+                        tank.setRotation(int(tank.getRotation() - 1) % 360);
+                    if (event.key.code == sf::Keyboard::D)
+                        tank.setRotation(int(tank.getRotation() + 1) % 360);
                 }
             }
         }

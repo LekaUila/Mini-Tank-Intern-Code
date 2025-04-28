@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:37 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/28 14:44:31 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 15:05:32 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ private:
 	float	armorRight;
 	float	armorBack;
 	float	hp;
+	float	rotation;
 	bool			caterpillarLeftStatus;
 	sf::Clock		caterpillarLeftClock;
 	bool			caterpillarRightStatus;
@@ -52,9 +53,12 @@ public:
 	const sf::Clock	&	getCaterpillarRightClock();
 	bool				getReloadingTimeStatus();
 	const sf::Clock	&	getReloadingTimeClock();
+	float		getRotation();
 
 	
 	/*setter*/
+
+	void	setRotation(float r);
 
 
 	/*methodr*/

@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:36 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/28 14:43:38 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 15:07:27 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ private:
 	//font
 	sf::Font	interfaceFont;
 
-	void	drawRadar(sf::RenderWindow & window);
+	void	drawRadar(Tank & tank, sf::RenderWindow & window);
 	void	drawTankHP(Tank & tank, sf::RenderWindow & window);
 	void	drawReloading(Tank & tank, sf::RenderWindow & window);
 	void	drawCaterpillarStatus(Tank & tank, sf::RenderWindow & window);

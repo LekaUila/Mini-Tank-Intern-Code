@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:29:25 by lflandri          #+#    #+#             */
-/*   Updated: 2025/03/05 18:26:59 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 15:19:25 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,8 @@
 # include <map>
 # include <vector>
 # include <math.h>
+# ifndef M_PI
+#  define M_PI 3.14159
+# endif 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:24:00 by lflandri          #+#    #+#             */
-/*   Updated: 2024/12/21 17:44:20 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/28 15:26:54 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "externalLibraryInclude.hpp"
 
 unsigned int numberOfDeath(std::map<unsigned int, unsigned int> & deathCounter);
+t_point rotate(t_point & M, t_point & O, float angle);
 
 
 
