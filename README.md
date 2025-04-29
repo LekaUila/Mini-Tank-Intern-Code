@@ -1,21 +1,18 @@
-# Projet
-Ceci est juste une base de projet C++ utilisant la SFML avec un moyen de le compiler sous Windows ou Linux
+# Projet 
+Programme du Rasberry embarqué à bord des Mini-Tank (Lazer Game)
 
 # Compilation
-## Linux :
+## Command
 make
 
-## Windows :
-mingw32-make win
-
-## .exe a partir d'un linux :
-make linux-win 
-
 # Lancement
-## Linux :
+## Command
 make run
 
-## Windows :
-mingw32-make winrun
-OU
-Double clique sur le .exe dans windows_executable
+# Setup 
+## Command
+make install
+## to do
+setup the ID in the Makefile
+
+
