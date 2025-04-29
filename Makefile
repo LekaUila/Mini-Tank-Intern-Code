@@ -8,7 +8,7 @@ CC					:=	g++
 CPPFLAGS			:=	-MP -MMD -I includes -g3
 LIBFSMLFLAG			:=	-lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 #==================================VARIABLES===================================#
-ID					:= 0
+ID					:= 42
 
 #=====================================NAME=====================================#
 NAME	:=	MiniTankInterface

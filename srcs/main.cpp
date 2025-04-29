@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:37:04 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/29 10:43:17 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/29 11:29:35 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 
 int main(int ac, char **av)
 {
+    if (ac != 2)
+    {
+        std::cout << "Error : Tank need this id to start." << std::endl;
+        return 2;
+    }
+
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
     // create the window
@@ -26,7 +32,7 @@ int main(int ac, char **av)
     sf::RenderWindow window(sf::VideoMode(RESOLUTION_X, RESOLUTION_Y), "Mini Tank Interface",
                             sf::Style::Default, settings);
     Tank tank = Tank();
-    ComSysteme comSysteme = ComSysteme(0);
+    ComSysteme comSysteme = ComSysteme(atoi(av[1]));
     Interface interface = Interface( window.getSize().x,  window.getSize().y);
     ProjectileManager projectileManager = ProjectileManager();
     std::map<unsigned int, unsigned int>deathCounter;
