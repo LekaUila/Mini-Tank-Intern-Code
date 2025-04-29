@@ -6,12 +6,13 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:37:04 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/28 16:13:21 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/29 10:43:17 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../includes/class/Tank.hpp"
+#include "../includes/class/ComSysteme.hpp"
 #include "../includes/class/Interface.hpp"
 #include "../includes/class/ProjectileManager.hpp"
 
@@ -25,6 +26,7 @@ int main(int ac, char **av)
     sf::RenderWindow window(sf::VideoMode(RESOLUTION_X, RESOLUTION_Y), "Mini Tank Interface",
                             sf::Style::Default, settings);
     Tank tank = Tank();
+    ComSysteme comSysteme = ComSysteme(0);
     Interface interface = Interface( window.getSize().x,  window.getSize().y);
     ProjectileManager projectileManager = ProjectileManager();
     std::map<unsigned int, unsigned int>deathCounter;
@@ -35,7 +37,7 @@ int main(int ac, char **av)
 
     //TEST adding
 
-    interface.setInGame(true);
+    // interface.setInGame(true);
     deathCounter[5] = 1;
     deathCounter[8] = 3;
     projectileManager.addProjectile(1, 1);
@@ -110,7 +112,7 @@ int main(int ac, char **av)
         window.clear(sf::Color::Black);
 
         // draw everything here...
-        interface.draw(tank, deathCounter, projectileManager, window);
+        interface.draw(comSysteme, tank, deathCounter, projectileManager, window);
         // window.draw(...);
 
         // end the current frame

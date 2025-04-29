@@ -23,6 +23,7 @@ EXEC_LINUX			:=	$(EXEC_DIR_LINUX)$(NAME)
 #====================================TARGETS===================================#
 SRCS	:=	srcs/main.cpp \
 			srcs/Tank.cpp \
+			srcs/ComSysteme.cpp \
 			srcs/Interface.cpp \
 			srcs/utils.cpp \
 			srcs/Projectile.cpp \

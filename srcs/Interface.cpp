@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:51 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/28 16:33:11 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/29 10:47:45 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool	Interface::getInGame()
 
 	/*method*/
 
-void	Interface::draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCounter,ProjectileManager & projectileManager, sf::RenderWindow & window)
+void	Interface::draw(ComSysteme & comSysteme, Tank & tank, std::map<unsigned int, unsigned int> & deathCounter,ProjectileManager & projectileManager, sf::RenderWindow & window)
 {	if (this->inGame)
 	{
 		window.draw(this->backgroundSprite);
@@ -83,6 +83,10 @@ void	Interface::draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCo
 		this->drawReloading(tank, window);
 		this->drawKillDeathCounter(deathCounter, window);
 		this->drawProjectileSelector(projectileManager, window);		
+	}
+	else
+	{
+		this->drawInformation(comSysteme, window);
 	}
 
 }
@@ -458,3 +462,46 @@ void	Interface::drawProjectileSelector(ProjectileManager & projectileManager, sf
 /*==========================================================================*/
 /*==========================================================================*/
 /*==========================================================================*/
+
+
+void	Interface::drawInformation(ComSysteme & comSysteme, sf::RenderWindow & window)
+{
+	sf::Text			textHP;
+
+	textHP.setFillColor(sf::Color(INTERFACE_TANK_MAIN_COLOR));
+	textHP.setFont(this->interfaceFont);
+	textHP.setScale(this->x / RESOLUTION_X, this->y / RESOLUTION_Y);
+	textHP.setCharacterSize(RESOLUTION_X / 24);
+
+	// ID 
+	textHP.setString("ID : " + NumberToString(comSysteme.getId()));
+	textHP.setPosition(this->x / 6,  this->y / 6 * 0.25);
+	window.draw(textHP);
+
+	// CONNECTION STATUS
+	switch (comSysteme.getStatus())
+	{
+		case DISCONNECTED:
+			textHP.setString("Connection Status : DISCONNECTED");
+			break;
+
+		case CONNECTING:
+			textHP.setString("Connection Status : CONNECTING");
+			break;
+
+		case CONNECTED:
+			textHP.setString("Connection Status : CONNECTED");
+			break;
+		
+		default:
+			textHP.setString("How did you get there ?");
+			break;
+	}
+	textHP.setPosition(this->x / 6,  this->y / 6 * 0.75);
+	window.draw(textHP);
+
+	// TRY FAILED
+	textHP.setString("Try to connect to server failed " + NumberToString(comSysteme.getFailedTry()) + " times.");
+	textHP.setPosition(this->x / 6,  this->y / 6 * 1.25);
+	window.draw(textHP);
+}

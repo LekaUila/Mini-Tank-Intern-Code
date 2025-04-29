@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:02:36 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/28 15:07:27 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/04/29 10:42:14 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../header_tank.hpp"
 # include "Tank.hpp"
+# include "ComSysteme.hpp"
 # include "ProjectileManager.hpp"
 
 
@@ -45,6 +46,8 @@ private:
 	void	drawKillDeathCounter(std::map<unsigned int, unsigned int> & deathCounter,sf::RenderWindow & window);
 	void	drawProjectileSelector(ProjectileManager & projectileManager, sf::RenderWindow & window);
 
+	void	drawInformation(ComSysteme & comSysteme,sf::RenderWindow & window);
+
 
 public:
 	Interface(size_t x, size_t y);
@@ -64,7 +67,7 @@ public:
 
 	void	updatePoint(unsigned int ID, double x, double y);
 	void	tick(float delta);
-	void	draw(Tank & tank, std::map<unsigned int, unsigned int> & deathCounter,
+	void	draw(ComSysteme & comSysteme, Tank & tank, std::map<unsigned int, unsigned int> & deathCounter,
 					ProjectileManager & projectileManager, sf::RenderWindow & window);
 };
 
