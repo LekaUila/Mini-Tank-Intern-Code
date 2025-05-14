@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:37:04 by lflandri          #+#    #+#             */
-/*   Updated: 2025/05/14 12:07:23 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/05/14 13:58:42 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,23 @@ int main(int ac, char **av)
             }
         }
 
-        if (comSysteme.getStatus()) // systeme connected
+        if (comSysteme.getStatus() == CONNECTED) // systeme connected
         {
             comSysteme.updateDataRecieved();
             comSysteme.executeCommands();
         }
-        else
+        else if (comSysteme.getStatus() == CONNECTING)
+        {
+            comSysteme.updateDataRecieved();
+            comSysteme.executeCommands();
+            if (comSysteme.getReconnectionTimer().getElapsedTime().asSeconds() > RECONNECTION_TIME)
+            {
+                comSysteme.stop();
+                comSysteme.addFailedTry();
+                comSysteme.init();
+            }
+        }
+        else 
         {
             comSysteme.init();
         }

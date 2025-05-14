@@ -6,14 +6,16 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:42:46 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/28 16:17:57 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/05/14 13:54:42 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE
 # define DEFINE
 
-# define SELF_ID 0
+// # define SELF_ID 0
+
+# define RECONNECTION_TIME 10
 
 /*Resolution*/
 # define RESOLUTION_X 850

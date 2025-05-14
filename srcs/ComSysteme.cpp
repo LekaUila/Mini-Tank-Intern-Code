@@ -6,14 +6,23 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:40:49 by lflandri          #+#    #+#             */
-/*   Updated: 2025/05/14 12:02:53 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/05/14 13:57:04 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/class/ComSysteme.hpp"
 
 
-
+std::ostream	&operator<<(std::ostream &os, std::vector<std::string> &vec)
+{
+	for (std::size_t i = 0; i < vec.size(); i++)
+	{
+		if (i > 0)
+			os << " ";
+		os << vec[i];
+	}
+	return (os);
+}
 
 
 
@@ -44,7 +53,7 @@ ComSysteme::ComSysteme(unsigned int i, unsigned int p, std::string mdp)
 	this->failed_try = 0;
 	this->fd = -1;
 	this->port = p;
-	this->name = "Funny Bot !";
+	this->name = std::to_string(i);
 	this->password = mdp;
 	this->tmpRecieved = "";
 }
@@ -56,6 +65,11 @@ ComSysteme::~ComSysteme()
 
 
 /*getter*/
+
+sf::Clock	&	ComSysteme::getReconnectionTimer()
+{
+	return this->reconnectionTimer;
+}
 
 unsigned int	ComSysteme::getId()
 {
@@ -81,9 +95,16 @@ int				ComSysteme::getFailedTry()
 
 /*methode*/
 
+void 			ComSysteme::addFailedTry()
+{
+	this->failed_try ++;
+}
+
+
 void 	ComSysteme::init( void )
 {
 	this->connection_status = CONNECTING;
+	this->reconnectionTimer.restart();
 	this->fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (this->fd < 0)
 		throw std::invalid_argument("Socket creation failed\n");
@@ -194,8 +215,18 @@ void	ComSysteme::executeCommands( void )
 	for (std::size_t i = 0; i < this->commands.size(); i++)
 	{
 		std::vector<std::string>	command = commands[i];
+		std::cout << "|" << command << "|" << std::endl;
 
-		// Parse command recieved from user
+		if (command[0] == "ERROR")
+		{
+			this->failed_try += 1;
+			this->stop();
+		}
+		if (command[0] == "VALIDATE")
+		{
+			this->connection_status = CONNECTED;
+		}
+
 
 	}
 

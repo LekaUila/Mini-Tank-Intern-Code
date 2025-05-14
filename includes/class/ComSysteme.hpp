@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:37 by lflandri          #+#    #+#             */
-/*   Updated: 2025/05/14 12:02:33 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/05/14 13:56:31 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ private:
 	std::string	name, password, tmpRecieved;
 	std::vector<std::vector<std::string> >	commands;
 	std::vector<std::vector<std::string> >	commandsInWait;
+	sf::Clock		reconnectionTimer;
 
 
 
@@ -44,19 +45,21 @@ public:
 
 	/*getter*/
 	
+	sf::Clock	&	getReconnectionTimer();
 	unsigned int	getId();
 	int				getStatus();
 	int				getFailedTry();
-	void 			init( void );
-	void			updateDataRecieved( void );
-	void			executeCommands( void );
-	void			stop( void );
+
 	/*setter*/
 
 
 	/*methode*/
 
-
+	void 			addFailedTry();
+	void 			init( void );
+	void			updateDataRecieved( void );
+	void			executeCommands( void );
+	void			stop( void );
 
 };
 
