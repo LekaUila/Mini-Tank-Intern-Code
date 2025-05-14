@@ -6,7 +6,7 @@
 /*   By: lflandri <liam.flandrinck.58@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:37:04 by lflandri          #+#    #+#             */
-/*   Updated: 2025/04/29 11:29:35 by lflandri         ###   ########.fr       */
+/*   Updated: 2025/05/14 12:07:23 by lflandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 int main(int ac, char **av)
 {
-    if (ac != 2)
+    if (ac != 4)
     {
-        std::cout << "Error : Tank need this id to start." << std::endl;
+        std::cout << "Error : Tank need this id, port and password to start." << std::endl;
         return 2;
     }
 
@@ -32,7 +32,7 @@ int main(int ac, char **av)
     sf::RenderWindow window(sf::VideoMode(RESOLUTION_X, RESOLUTION_Y), "Mini Tank Interface",
                             sf::Style::Default, settings);
     Tank tank = Tank();
-    ComSysteme comSysteme = ComSysteme(atoi(av[1]));
+    ComSysteme comSysteme = ComSysteme(atoi(av[1]), atoi(av[2]), av[3]);
     Interface interface = Interface( window.getSize().x,  window.getSize().y);
     ProjectileManager projectileManager = ProjectileManager();
     std::map<unsigned int, unsigned int>deathCounter;
@@ -102,6 +102,16 @@ int main(int ac, char **av)
                         tank.setRotation(int(tank.getRotation() + 1) % 360);
                 }
             }
+        }
+
+        if (comSysteme.getStatus()) // systeme connected
+        {
+            comSysteme.updateDataRecieved();
+            comSysteme.executeCommands();
+        }
+        else
+        {
+            comSysteme.init();
         }
 
         float delta = clock.restart().asSeconds();

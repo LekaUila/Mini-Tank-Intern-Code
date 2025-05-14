@@ -9,6 +9,8 @@ CPPFLAGS			:=	-MP -MMD -I includes -g3
 LIBFSMLFLAG			:=	-lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 #==================================VARIABLES===================================#
 ID					:= 42
+PASSWORLD			:= passworldToChange
+PORT				:= 4242
 
 #=====================================NAME=====================================#
 NAME	:=	MiniTankInterface
@@ -100,12 +102,12 @@ re :
 
 run: $(EXEC_LINUX)
 	@echo "$(BLUE)Launch game$(NOC)"
-	@cd $(EXEC_DIR_LINUX) && ./$(NAME) $(ID)
+	@cd $(EXEC_DIR_LINUX) && ./$(NAME) $(ID) $(PORT) $(PASSWORLD)
 	@echo "$(GREEN)Have a nice day :)$(NOC)"
 
 runval: $(EXEC_LINUX)
 	@echo "$(BLUE)Debug$(NOC)"
-	@cd $(EXEC_DIR_LINUX) && valgrind ./$(NAME)
+	@cd $(EXEC_DIR_LINUX) && valgrind ./$(NAME) $(ID) $(PORT) $(PASSWORLD)
 
 install:
 	@sudo apt install libsfml-dev -y
